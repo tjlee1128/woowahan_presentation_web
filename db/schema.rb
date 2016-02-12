@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212043436) do
+ActiveRecord::Schema.define(version: 20160212063525) do
 
   create_table "images", primary_key: "image_id", force: :cascade do |t|
     t.string   "imageable_type"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20160212043436) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "pdfs", primary_key: "pdf_id", force: :cascade do |t|
+    t.integer  "presentation_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.index ["presentation_id"], name: "index_pdfs_on_presentation_id"
   end
 
   create_table "presentations", primary_key: "presentation_id", force: :cascade do |t|
@@ -41,6 +52,17 @@ ActiveRecord::Schema.define(version: 20160212043436) do
     t.text     "fullname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "videos", primary_key: "video_id", force: :cascade do |t|
+    t.integer  "presentation_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+    t.index ["presentation_id"], name: "index_videos_on_presentation_id"
   end
 
 end

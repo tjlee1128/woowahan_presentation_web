@@ -5,7 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
+      <th>Presentation_id</th>
+      <th>Video_thumbnail</th>
+      <th>User_id</th>
       <th>Title</th>
       <th>Subtitle</th>
       <th>Content</th>
@@ -16,7 +18,11 @@
   <tbody>
     <% @presentations.each do |presentation| %>
       <tr>
-        <td><%= presentation.user %></td>
+        <td><%= presentation.id %></td>
+        <td align="center">
+          <img src= <%= presentation.video.video.url(:thumb) %> width="100" height="100">
+        </td>
+        <td><%= presentation.user.user_id %></td>
         <td><%= presentation.title %></td>
         <td><%= presentation.subtitle %></td>
         <td><%= presentation.content %></td>

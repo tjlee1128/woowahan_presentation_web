@@ -1,4 +1,4 @@
-<%= form_for(presentation) do |f| %>
+<%= form_for @presentation, html: { multipart: true } do |f| %>
   <% if presentation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(presentation.errors.count, "error") %> prohibited this presentation from being saved:</h2>
@@ -10,6 +10,16 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= f.label :video %>
+    <%= file_field_tag :video %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pdf %>
+    <%= file_field_tag :pdf %>
+  </div>
 
   <div class="field">
     <%= f.label :user_id %>
