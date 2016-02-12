@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User_id</th>
+      <th>Image</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Fullname</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.user_id %></td>
+        <td align="center">
+          <% if user.image.present? %>
+            <img src= <%= user.image.image.url %> width="100" height="100">
+          <% else %>
+            이미지 없음
+          <% end %> 
+        </td>
+        <td><%= user.email %></td>
+        <td><%= user.password %></td>
+        <td><%= user.fullname %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

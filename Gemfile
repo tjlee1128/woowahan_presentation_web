@@ -44,3 +44,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "paperclip", "~> 4.3"
+gem 'responders', '~> 2.0'
+gem 'rmagick'
+gem 'grim', '~> 1.2'
+gem 'paperclip-av-transcoder'
+gem 'paperclip-ffmpeg', '~> 1.2'
