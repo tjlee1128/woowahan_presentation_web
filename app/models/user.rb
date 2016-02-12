@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :image, as: :imageable
+  has_many :presentations
 
   def self.available_email(email)
     find_by(email: email).nil? if email.present?
