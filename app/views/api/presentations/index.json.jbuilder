@@ -1,8 +1,14 @@
 json.rows @presentations do |presentation|
   json.id presentation.presentation_id
+  json.title presentation.title
+  json.subtitle presentation.subtitle
+  json.content presentation.content
+  json.created_at presentation.created_at
+  json.updated_at presentation.updated_at
   json.user do
     json.id presentation.user.user_id
     json.fullname presentation.user.fullname
+    json.team_name presentation.user.get_team_name(presentation.user.team_id)
     json.image do
       json.id presentation.user.image.image_id
       json.file_name presentation.user.image.image_file_name
@@ -14,11 +20,6 @@ json.rows @presentations do |presentation|
       json.original_url presentation.user.image.image.url
     end
   end
-  json.title presentation.title
-  json.subtitle presentation.subtitle
-  json.content presentation.content
-  json.created_at presentation.created_at
-  json.updated_at presentation.updated_at
   json.video do
     json.id presentation.video.video_id
     json.file_name presentation.video.video_file_name

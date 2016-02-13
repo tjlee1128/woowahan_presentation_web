@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :users
 
   namespace :api do
-  	resources :presentations, only: [:index, :show]
+    resources :categories, only: [:index]
+    resources :teams, only: [:index]
+    resources :presentations, only: [:index, :show]
   end
 
 

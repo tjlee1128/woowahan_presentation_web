@@ -17,4 +17,8 @@ class User < ApplicationRecord
       'system/images/default_user.png'
     end
   end
+
+  def get_team_name(team_id)
+  	CommonCode.find_by_team(team_id).first.name_korean
+  end
 end

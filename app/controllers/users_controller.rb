@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     ImageHelper.create_single_image(params[:image], @user)
-    puts CommonCode.find_by_team(@user.team_id)
     @user.save
     respond_with(@user)
   end
