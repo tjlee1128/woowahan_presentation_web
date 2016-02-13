@@ -47,11 +47,12 @@ ActiveRecord::Schema.define(version: 20160212122527) do
 
   create_table "presentations", primary_key: "presentation_id", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "category_id"
     t.text     "title"
     t.text     "subtitle"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_presentations_on_user_id"
   end
 

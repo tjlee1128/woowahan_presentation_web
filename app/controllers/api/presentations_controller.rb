@@ -6,7 +6,8 @@ class Api::PresentationsController < ApplicationController
 
   # GET api/presentations.json
   def index
-    @presentations = Presentation.all
+    @presentations = Presentation.find_by_category(params[:category_id])
+                     .all
     respond_with(@presentations)
   end
 

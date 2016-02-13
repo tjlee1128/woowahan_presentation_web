@@ -3,6 +3,7 @@ class PresentationsController < ApplicationController
   include PdfHelper
 
   before_action :set_presentation, only: [:show, :edit, :update, :destroy]
+  before_action :find_by_category
 
   respond_to :html, :json
 
@@ -62,6 +63,9 @@ class PresentationsController < ApplicationController
   end
 
   private
+    def find_by_category
+      @category = CommonCode.find_by_common_code_type('CATEGORY')
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_presentation
       @presentation = Presentation.find(params[:id])
@@ -70,7 +74,7 @@ class PresentationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
       params.require(:presentation).permit(
-        :user_id, :title, :subtitle, :content, :video, :pdf
+        :user_id, :category_id, :title, :subtitle, :content, :video, :pdf
       )
     end
 end

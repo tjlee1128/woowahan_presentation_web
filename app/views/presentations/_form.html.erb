@@ -27,6 +27,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :category_id %>
+    <% options = options_from_collection_for_select(@category, 'common_code_detail_id', 'name_korean') %>
+    <%= f.select :category_id,  options %>
+  </div>
+
+  <div class="field">
     <%= f.label :title %>
     <%= f.text_area :title %>
   </div>
