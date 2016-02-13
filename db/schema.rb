@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212122527) do
+ActiveRecord::Schema.define(version: 20160213123330) do
 
   create_table "common_codes", primary_key: "common_code_id", force: :cascade do |t|
     t.text     "common_code_type"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20160212122527) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_presentations_on_user_id"
+  end
+
+  create_table "user_auths", primary_key: "user_auth_id", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "access_token"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_user_auths_on_user_id"
   end
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|

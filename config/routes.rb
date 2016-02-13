@@ -8,6 +8,14 @@ Rails.application.routes.draw do
     resources :categories, only: [:index]
     resources :teams, only: [:index]
     resources :presentations, only: [:index, :show]
+    resources :users, only: :index do
+      collection do
+        post :modify
+        post :authentication
+        post :signup
+        post :signin
+      end
+    end
   end
 
 
