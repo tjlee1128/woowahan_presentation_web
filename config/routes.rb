@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :common_codes
   resources :presentations
   resources :users
 

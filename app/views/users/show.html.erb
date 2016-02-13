@@ -15,5 +15,10 @@
   <%= @user.fullname %>
 </p>
 
+<p>
+  <strong>Team name:</strong>
+  <%= CommonCode.find_by_team(@user.team_id).first.name_korean %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

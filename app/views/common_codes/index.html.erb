@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Common Codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Common code id</th>
+      <th>Common code type</th>
+      <th>Common code detail</th>
+      <th>Name korean</th>
+      <th>Yn use</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @common_codes.each do |common_code| %>
+      <tr>
+        <td><%= common_code.common_code_id %></td>
+        <td><%= common_code.common_code_type %></td>
+        <td><%= common_code.common_code_detail_id %></td>
+        <td><%= common_code.name_korean %></td>
+        <td><%= common_code.yn_use %></td>
+        <td><%= link_to 'Show', common_code %></td>
+        <td><%= link_to 'Edit', edit_common_code_path(common_code) %></td>
+        <td><%= link_to 'Destroy', common_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Common Code', new_common_code_path %>

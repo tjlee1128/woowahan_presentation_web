@@ -32,8 +32,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :team %>
-    <%= f.text_area :team %>
+    <%= f.label :team_id %>
+    <% options = options_from_collection_for_select(@team, 'common_code_detail_id', 'name_korean') %>
+    <%= f.select :team_id,  options %>
   </div>
 
   <div class="actions">

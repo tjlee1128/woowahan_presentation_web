@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212063525) do
+ActiveRecord::Schema.define(version: 20160212122527) do
+
+  create_table "common_codes", primary_key: "common_code_id", force: :cascade do |t|
+    t.text     "common_code_type"
+    t.integer  "common_code_detail_id"
+    t.text     "name_korean"
+    t.boolean  "yn_use",                default: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "images", primary_key: "image_id", force: :cascade do |t|
     t.string   "imageable_type"
@@ -50,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160212063525) do
     t.text     "email"
     t.text     "password"
     t.text     "fullname"
+    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

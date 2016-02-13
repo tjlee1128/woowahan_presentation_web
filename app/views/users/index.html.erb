@@ -10,7 +10,7 @@
       <th>Email</th>
       <th>Password</th>
       <th>Fullname</th>
-      <th>Team</th>
+      <th>Team name</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -29,7 +29,7 @@
         <td><%= user.email %></td>
         <td><%= user.password %></td>
         <td><%= user.fullname %></td>
-        <td><%= user.team %></td>
+        <td><%= CommonCode.find_by_team(user.team_id).first.name_korean %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

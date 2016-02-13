@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Common code type:</strong>
+  <%= @common_code.common_code_type %>
+</p>
+
+<p>
+  <strong>Common code detail:</strong>
+  <%= @common_code.common_code_detail_id %>
+</p>
+
+<p>
+  <strong>Name korean:</strong>
+  <%= @common_code.name_korean %>
+</p>
+
+<p>
+  <strong>Yn use:</strong>
+  <%= @common_code.yn_use %>
+</p>
+
+<%= link_to 'Edit', edit_common_code_path(@common_code) %> |
+<%= link_to 'Back', common_codes_path %>

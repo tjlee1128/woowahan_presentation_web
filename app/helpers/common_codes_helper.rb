@@ -1,0 +1,2 @@
+module CommonCodesHelper
+end

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include ImageHelper
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_by_team
 
   respond_to :html, :json
 
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     ImageHelper.create_single_image(params[:image], @user)
+    puts CommonCode.find_by_team(@user.team_id)
     @user.save
     respond_with(@user)
   end
@@ -42,13 +44,17 @@ class UsersController < ApplicationController
 
   private
 
+  def find_by_team
+    @team = CommonCode.find_by_common_code_type('TEAM')
+  end
+
   def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
     params.require(:user).permit(
-      :email, :password, :fullname, :image
+      :email, :password, :fullname, :team_id, :image
     )
   end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  common_code_type: MyText
+  common_code_detail_id: 1
+  name_korean: MyText
+  yn_use: false
+
+two:
+  common_code_type: MyText
+  common_code_detail_id: 1
+  name_korean: MyText
+  yn_use: false
