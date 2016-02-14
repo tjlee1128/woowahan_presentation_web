@@ -20,22 +20,26 @@ json.rows @presentations do |presentation|
       json.original_url presentation.user.image.image.url
     end
   end
-  json.video do
-    json.id presentation.video.video_id
-    json.file_name presentation.video.video_file_name
-    json.file_content_type presentation.video.video_content_type
-    json.file_size presentation.video.video_file_size
-    json.file_updated_at presentation.video.video_updated_at
-    json.thumb_url presentation.video.video.url(:thumb)
-    json.url presentation.video.video.url
+  if presentation.video.present?
+    json.video do
+      json.id presentation.video.video_id
+      json.file_name presentation.video.video_file_name
+      json.file_content_type presentation.video.video_content_type
+      json.file_size presentation.video.video_file_size
+      json.file_updated_at presentation.video.video_updated_at
+      json.thumb_url presentation.video.video.url(:thumb)
+      json.url presentation.video.video.url
+    end
   end
-  json.pdf do
-    json.id presentation.pdf.pdf_id
-    json.file_name presentation.pdf.pdf_file_name
-    json.file_content_type presentation.pdf.pdf_content_type
-    json.file_size presentation.pdf.pdf_file_size
-    json.file_updated_at presentation.pdf.pdf_updated_at
-    json.url presentation.pdf.pdf.url
+  if presentation.pdf.present?
+    json.pdf do
+      json.id presentation.pdf.pdf_id
+      json.file_name presentation.pdf.pdf_file_name
+      json.file_content_type presentation.pdf.pdf_content_type
+      json.file_size presentation.pdf.pdf_file_size
+      json.file_updated_at presentation.pdf.pdf_updated_at
+      json.url presentation.pdf.pdf.url
+    end
   end
   json.images presentation.images do |image|
     #json.image do

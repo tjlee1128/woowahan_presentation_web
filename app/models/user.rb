@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :image, as: :imageable
+  has_many :user_auths
   has_many :presentations
 
   def self.available_email(email)
@@ -14,7 +15,7 @@ class User < ApplicationRecord
     if image.present?
       image.image.url
     else
-      'system/images/default_user.png'
+      'system/images/ic_account_box.png'
     end
   end
 

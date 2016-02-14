@@ -21,7 +21,12 @@
       <tr>
         <td><%= presentation.id %></td>
         <td align="center">
-          <img src= <%= presentation.video.video.url(:thumb) %> width="100" height="100">
+          <% if presentation.video.present? %>
+            <img src= <%= presentation.video.video.url(:thumb) %> width="100" height="100">
+          <% else %>
+            이미지 없음
+          <% end %> 
+          
         </td>
         <td><%= presentation.user.user_id %></td>
         <td><%= CommonCode.find_by_category(presentation.category_id).first.name_korean %></td>

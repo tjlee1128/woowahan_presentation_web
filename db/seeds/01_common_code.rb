@@ -61,3 +61,21 @@ CommonCode.create(
   name_korean: 'Education',
   yn_use: true
 )
+CommonCode.create(
+  common_code_type: 'CATEGORY',
+  common_code_detail_id: 3,
+  name_korean: 'Business',
+  yn_use: true
+)
+CommonCode.create(
+  common_code_type: 'CATEGORY',
+  common_code_detail_id: 4,
+  name_korean: 'ETC.',
+  yn_use: true
+)
+CommonCode.create(
+  common_code_type: 'CATEGORY',
+  common_code_detail_id: 5,
+  name_korean: 'The best of the month(준비중)',
+  yn_use: true
+)

@@ -24,25 +24,33 @@ module ImageHelper
   end
 
   def self.create_single_image(image, model)
-    return unless image
     add_single_image(image, model)
   end
 
   def self.update_single_image(image, model)
-    return unless image
     delete_single_image(model)
     add_single_image(image, model)
   end
 
   def self.add_single_image(image, model)
-    @image = Image.new
-    @image.image = image
-    @image.imageable = model
-    @image.save
+    if image.present?
+      @image = Image.new
+      @image.image = image
+      @image.imageable = model
+      @image.save
+    else
+      puts model
+      default_image_path = "#{Rails.root}/public/system/images/ic_account_box.png"
+      file = File.open(default_image_path)
+      image = Image.new
+      image.image = file
+      image.imageable = model
+      file.close
+      image.save!
+    end
   end
 
   def self.delete_single_image(model)
-    return unless model.image
     model.image.destroy
   end
 end

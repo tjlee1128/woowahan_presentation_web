@@ -35,9 +35,13 @@ class PresentationsController < ApplicationController
   def create
     @presentation = Presentation.new(presentation_params)
     @presentation.save
-    VideoHelper.create_single_video(params[:video], @presentation.id)
-    PdfHelper.create_single_pdf(params[:pdf], @presentation.id)
-    PdfHelper.convert(@presentation.pdf, @presentation)
+    if params.has_key?(:video)
+      VideoHelper.create_single_video(params[:video], @presentation.id)  
+    end
+    if params.has_key?(:pdf)
+      PdfHelper.create_single_pdf(params[:pdf], @presentation.id)
+      PdfHelper.convert(@presentation.pdf, @presentation)  
+    end
     respond_with(@presentation)
   end
 
@@ -45,8 +49,10 @@ class PresentationsController < ApplicationController
   # PATCH/PUT /presentations/1.json
   def update
     @presentation.update(presentation_params)
-    VideoHelper.update_single_video(params[:video], @presentation.id)
-    if params[:pdf]
+    if params.has_key?(:video)
+      VideoHelper.update_single_video(params[:video], @presentation.id)
+    end
+    if params.has_key?(:pdf)
       PdfHelper.update_single_pdf(params[:pdf], @presentation.id)
       PdfHelper.convert(@presentation.pdf, @presentation)
     end
@@ -57,8 +63,12 @@ class PresentationsController < ApplicationController
   # DELETE /presentations/1.json
   def destroy
     @presentation.destroy
-    VideoHelper.delete_single_video(@presentation.id)
-    PdfHelper.delete_single_pdf(@presentation.id)
+    if @presentation.video.present?
+      VideoHelper.delete_single_video(@presentation.id)  
+    end
+    if @presentation.pdf.present?
+      PdfHelper.delete_single_pdf(@presentation.id)
+    end
     respond_with(@presentation)
   end
 

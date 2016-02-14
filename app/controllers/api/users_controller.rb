@@ -91,9 +91,8 @@ module Api
     def add_user_param(user)
       user.email = params[:email]
       user.password = params[:password]
-      user.phone = params[:phone]
-      user.nickname = params[:nickname]
-      user.gender = params[:gender]
+      user.fullname = params[:fullname]
+      user.team_id = params[:team_id]
     end
 
     def set_user_auth
