@@ -42,6 +42,8 @@ class PresentationsController < ApplicationController
       PdfHelper.create_single_pdf(params[:pdf], @presentation.id)
       PdfHelper.convert(@presentation.pdf, @presentation)  
     end
+    @presentation_view = PresentationView.new(:presentation_id => @presentation.presentation_id)
+    @presentation_view.save
     respond_with(@presentation)
   end
 
@@ -62,6 +64,7 @@ class PresentationsController < ApplicationController
   # DELETE /presentations/1
   # DELETE /presentations/1.json
   def destroy
+    @presentation.presentation_view.delete
     @presentation.destroy
     if @presentation.video.present?
       VideoHelper.delete_single_video(@presentation.id)  

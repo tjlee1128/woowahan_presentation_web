@@ -7,6 +7,9 @@ class CreatePresentations < ActiveRecord::Migration[5.0]
       t.text :subtitle
       t.text :content
 
+      t.integer :comments_count, default: 0
+      t.integer :favorites_count, default: 0
+
       t.timestamps
     end
   end

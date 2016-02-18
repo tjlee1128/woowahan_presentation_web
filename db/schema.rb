@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213123330) do
+ActiveRecord::Schema.define(version: 20160217115146) do
+
+  create_table "comments", primary_key: "comment_id", force: :cascade do |t|
+    t.integer  "presentation_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["presentation_id"], name: "index_comments_on_presentation_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "common_codes", primary_key: "common_code_id", force: :cascade do |t|
     t.text     "common_code_type"
@@ -20,6 +30,15 @@ ActiveRecord::Schema.define(version: 20160213123330) do
     t.boolean  "yn_use",                default: true
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "favorites", primary_key: "favorite_id", force: :cascade do |t|
+    t.integer  "presentation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["presentation_id"], name: "index_favorites_on_presentation_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "images", primary_key: "image_id", force: :cascade do |t|
@@ -45,14 +64,33 @@ ActiveRecord::Schema.define(version: 20160213123330) do
     t.index ["presentation_id"], name: "index_pdfs_on_presentation_id"
   end
 
+  create_table "presentation_favorite_users", primary_key: "presentation_favorite_user_id", force: :cascade do |t|
+    t.integer  "presentation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["presentation_id"], name: "index_presentation_favorite_users_on_presentation_id"
+    t.index ["user_id"], name: "index_presentation_favorite_users_on_user_id"
+  end
+
+  create_table "presentation_views", primary_key: "presentation_view_id", force: :cascade do |t|
+    t.integer  "presentation_id"
+    t.integer  "view_count",      default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["presentation_id"], name: "index_presentation_views_on_presentation_id"
+  end
+
   create_table "presentations", primary_key: "presentation_id", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
     t.text     "title"
     t.text     "subtitle"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "comments_count",  default: 0
+    t.integer  "favorites_count", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["user_id"], name: "index_presentations_on_user_id"
   end
 
@@ -69,8 +107,9 @@ ActiveRecord::Schema.define(version: 20160213123330) do
     t.text     "password"
     t.text     "fullname"
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "presentations_count", default: 0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "videos", primary_key: "video_id", force: :cascade do |t|

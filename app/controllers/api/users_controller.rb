@@ -5,14 +5,16 @@ module Api
     # include ErrorHelper
 
     before_action :set_user_auth, only:
-      [:index, :modify, :authentication]
+      [:index, :modify, :authentication,
+       :presentations, :favorite_presentations]
     #   :reviews, :review_update, :review_destroy]
 
     # before_action :set_review, only:
     #  [:review_update, :review_destroy]
 
     skip_before_filter :verify_authenticity_token, only:
-      [:create, :authentication, :signup, :signin]
+      [:create, :authentication, :signup, :signin,
+       :presentations, :favorite_presentations]
     #   :reviews, :review_update, :review_destroy]
 
     def index
@@ -64,27 +66,20 @@ module Api
       end
     end
 
-    # def reviews
+    def presentations
       # 사용자 인증이 안되면 에러 제이선 출력
-    #  if @user_auth.user.present?
-    #    @user = @user_auth.user
-    #    @reviews = @user.reviews.includes(:store, :images).all.page(params[:page]).order(updated_at: :DESC)
-    #  end
-    # end
+      if @user_auth.user.present?
+        @user = @user_auth.user
+        @user_presentations = @user.presentations.all.order(created_at: :DESC)
+      end
+    end
 
-    # def review_update
-    #  if (@user_auth.user && @review). present?
-    #    @review.detail = params[:detail]
-    #    @review.grade = params[:grade]
-    #    @review.save!
-    #  end
-    # end
-
-    #def review_destroy
-    #  if (@user_auth.user && @review). present?
-    #    @review.destroy
-    #  end
-    #end
+    def favorite_presentations
+      if @user_auth.user.present?
+        @user = @user_auth.user
+        @user_favorites = @user.favorites
+      end
+    end
 
     private
 

@@ -1,5 +1,8 @@
 json.rows @presentations do |presentation|
   json.id presentation.presentation_id
+  json.comment_count presentation.comments.size
+  json.view_count presentation.presentation_view.view_count
+  json.thumbs_count presentation.favorites.size
   json.title presentation.title
   json.subtitle presentation.subtitle
   json.content presentation.content

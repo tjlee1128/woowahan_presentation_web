@@ -5,6 +5,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.text :password
       t.text :fullname
       t.integer :team_id
+
+      t.integer :presentations_count, default: 0
       
       t.timestamps
     end
