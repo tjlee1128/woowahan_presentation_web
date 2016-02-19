@@ -16,9 +16,12 @@ class Api::PresentationsController < ApplicationController
 
   # GET api/presentations/1.json
   def show
-    # 수정필요 @presentation.presentation_view.increment_counter :view_count, @presentation.presentation_id
-    PresentationView.increment_counter :view_count, @presentation.presentation_id
-    @favorite_presentation = @presentation.favorites.find_by(user_id: params[:user_id]).present?
+    # 수정필요 
+    # @presentation.presentation_view.increment_counter :view_count, @presentation.presentation_id
+    Presentation.transaction do
+      PresentationView.increment_counter :view_count, @presentation.presentation_view.presentation_view_id
+      @favorite_presentation = @presentation.favorites.find_by(user_id: params[:user_id]).present?
+    end
     respond_with(@presentation)
   end
 
